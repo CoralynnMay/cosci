@@ -85,7 +85,7 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-check_PROGRAMS = string_buffer.test$(EXEEXT)
+check_PROGRAMS = string_buffer.test$(EXEEXT) hash_map.test$(EXEEXT)
 TESTS = $(check_PROGRAMS)
 subdir = test
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -97,6 +97,10 @@ mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
+hash_map_test_SOURCES = hash_map.c
+hash_map_test_OBJECTS = hash_map.$(OBJEXT)
+hash_map_test_LDADD = $(LDADD)
+hash_map_test_DEPENDENCIES = ${top_srcdir}/src/libcosci.a
 string_buffer_test_SOURCES = string_buffer.c
 string_buffer_test_OBJECTS = string_buffer.$(OBJEXT)
 string_buffer_test_LDADD = $(LDADD)
@@ -129,8 +133,8 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = string_buffer.c
-DIST_SOURCES = string_buffer.c
+SOURCES = hash_map.c string_buffer.c
+DIST_SOURCES = hash_map.c string_buffer.c
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -488,6 +492,10 @@ $(am__aclocal_m4_deps):
 clean-checkPROGRAMS:
 	-test -z "$(check_PROGRAMS)" || rm -f $(check_PROGRAMS)
 
+hash_map.test$(EXEEXT): $(hash_map_test_OBJECTS) $(hash_map_test_DEPENDENCIES) $(EXTRA_hash_map_test_DEPENDENCIES) 
+	@rm -f hash_map.test$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(hash_map_test_OBJECTS) $(hash_map_test_LDADD) $(LIBS)
+
 string_buffer.test$(EXEEXT): $(string_buffer_test_OBJECTS) $(string_buffer_test_DEPENDENCIES) $(EXTRA_string_buffer_test_DEPENDENCIES) 
 	@rm -f string_buffer.test$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(string_buffer_test_OBJECTS) $(string_buffer_test_LDADD) $(LIBS)
@@ -498,6 +506,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/hash_map.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/string_buffer.Po@am__quote@
 
 .c.o:
