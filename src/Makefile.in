@@ -104,7 +104,8 @@ am__v_AR_0 = @echo "  AR      " $@;
 am__v_AR_1 = 
 libcosci_a_AR = $(AR) $(ARFLAGS)
 libcosci_a_LIBADD =
-am_libcosci_a_OBJECTS = string_buffer.$(OBJEXT) hash_map.$(OBJEXT)
+am_libcosci_a_OBJECTS = string_buffer.$(OBJEXT) hash_map.$(OBJEXT) \
+	linked_list.$(OBJEXT)
 libcosci_a_OBJECTS = $(am_libcosci_a_OBJECTS)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
@@ -251,7 +252,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 noinst_LIBRARIES = libcosci.a
-libcosci_a_SOURCES = string_buffer.c hash_map.c
+libcosci_a_SOURCES = string_buffer.c hash_map.c linked_list.c
 all: all-am
 
 .SUFFIXES:
@@ -301,6 +302,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/hash_map.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/linked_list.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/string_buffer.Po@am__quote@
 
 .c.o:

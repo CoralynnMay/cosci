@@ -85,7 +85,8 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-check_PROGRAMS = string_buffer.test$(EXEEXT) hash_map.test$(EXEEXT)
+check_PROGRAMS = string_buffer.test$(EXEEXT) hash_map.test$(EXEEXT) \
+	linked_list.test$(EXEEXT)
 TESTS = $(check_PROGRAMS)
 subdir = test
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -101,6 +102,10 @@ hash_map_test_SOURCES = hash_map.c
 hash_map_test_OBJECTS = hash_map.$(OBJEXT)
 hash_map_test_LDADD = $(LDADD)
 hash_map_test_DEPENDENCIES = ${top_srcdir}/src/libcosci.a
+linked_list_test_SOURCES = linked_list.c
+linked_list_test_OBJECTS = linked_list.$(OBJEXT)
+linked_list_test_LDADD = $(LDADD)
+linked_list_test_DEPENDENCIES = ${top_srcdir}/src/libcosci.a
 string_buffer_test_SOURCES = string_buffer.c
 string_buffer_test_OBJECTS = string_buffer.$(OBJEXT)
 string_buffer_test_LDADD = $(LDADD)
@@ -133,8 +138,8 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = hash_map.c string_buffer.c
-DIST_SOURCES = hash_map.c string_buffer.c
+SOURCES = hash_map.c linked_list.c string_buffer.c
+DIST_SOURCES = hash_map.c linked_list.c string_buffer.c
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -496,6 +501,10 @@ hash_map.test$(EXEEXT): $(hash_map_test_OBJECTS) $(hash_map_test_DEPENDENCIES) $
 	@rm -f hash_map.test$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(hash_map_test_OBJECTS) $(hash_map_test_LDADD) $(LIBS)
 
+linked_list.test$(EXEEXT): $(linked_list_test_OBJECTS) $(linked_list_test_DEPENDENCIES) $(EXTRA_linked_list_test_DEPENDENCIES) 
+	@rm -f linked_list.test$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(linked_list_test_OBJECTS) $(linked_list_test_LDADD) $(LIBS)
+
 string_buffer.test$(EXEEXT): $(string_buffer_test_OBJECTS) $(string_buffer_test_DEPENDENCIES) $(EXTRA_string_buffer_test_DEPENDENCIES) 
 	@rm -f string_buffer.test$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(string_buffer_test_OBJECTS) $(string_buffer_test_LDADD) $(LIBS)
@@ -507,6 +516,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/hash_map.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/linked_list.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/string_buffer.Po@am__quote@
 
 .c.o:

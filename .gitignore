@@ -84,3 +84,7 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# gdb
+.gdbinit
+.atom-gdb.json
