@@ -2,7 +2,7 @@
 #include "hash_map.h"
 
 void test_set_get() {
-  const char* given_key = "key";
+  char* given_key = "key";
   int given_value = 10;
 
   hashMap* map = NULL;
@@ -16,7 +16,7 @@ void test_set_get() {
 }
 
 void test_add_key_list() {
-  const char** given_keys = {"foo", "bar", "baz"};
+  const char* given_keys[3] = {"foo", "bar", "baz"};
 
   hashMap* map = NULL;
   map = hashMap_new(10);
