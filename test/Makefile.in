@@ -86,7 +86,7 @@ NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
 check_PROGRAMS = string_buffer.test$(EXEEXT) hash_map.test$(EXEEXT) \
-	linked_list.test$(EXEEXT)
+	linked_list.test$(EXEEXT) tokenize.test$(EXEEXT)
 TESTS = $(check_PROGRAMS)
 subdir = test
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -110,6 +110,10 @@ string_buffer_test_SOURCES = string_buffer.c
 string_buffer_test_OBJECTS = string_buffer.$(OBJEXT)
 string_buffer_test_LDADD = $(LDADD)
 string_buffer_test_DEPENDENCIES = ${top_srcdir}/src/libcosci.a
+tokenize_test_SOURCES = tokenize.c
+tokenize_test_OBJECTS = tokenize.$(OBJEXT)
+tokenize_test_LDADD = $(LDADD)
+tokenize_test_DEPENDENCIES = ${top_srcdir}/src/libcosci.a
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -138,8 +142,8 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = hash_map.c linked_list.c string_buffer.c
-DIST_SOURCES = hash_map.c linked_list.c string_buffer.c
+SOURCES = hash_map.c linked_list.c string_buffer.c tokenize.c
+DIST_SOURCES = hash_map.c linked_list.c string_buffer.c tokenize.c
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -509,6 +513,10 @@ string_buffer.test$(EXEEXT): $(string_buffer_test_OBJECTS) $(string_buffer_test_
 	@rm -f string_buffer.test$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(string_buffer_test_OBJECTS) $(string_buffer_test_LDADD) $(LIBS)
 
+tokenize.test$(EXEEXT): $(tokenize_test_OBJECTS) $(tokenize_test_DEPENDENCIES) $(EXTRA_tokenize_test_DEPENDENCIES) 
+	@rm -f tokenize.test$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tokenize_test_OBJECTS) $(tokenize_test_LDADD) $(LIBS)
+
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
 
@@ -518,6 +526,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/hash_map.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/linked_list.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/string_buffer.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/tokenize.Po@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

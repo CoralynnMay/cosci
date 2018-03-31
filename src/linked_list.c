@@ -26,3 +26,12 @@ void linkedList_add(linkedList* list, void* item) {
     }
   }
 }
+
+linkedList* linkedList_by_index(linkedList* list, size_t index) {
+  linkedList* iter = NULL;
+  size_t i;
+
+  for(iter = list, i = 0; i < index && iter != NULL; i++, iter = iter->next) {}
+
+  return iter;
+}

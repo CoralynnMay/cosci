@@ -58,3 +58,17 @@ char* stringBuffer_get_finished_string(stringBuffer* buffer) {
   strcpy(str, buffer->buffer);
   return str;
 }
+
+void stringBuffer_flush(stringBuffer* buffer) {
+  size_t i;
+
+  for(i = 0; i < buffer->size; i++) {
+    buffer->buffer[i] = '\0';
+  }
+
+  buffer->fill = 0;
+}
+
+int stringBuffer_empty(stringBuffer* buffer) {
+  return !(buffer->fill > 0);
+}
